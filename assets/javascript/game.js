@@ -38,18 +38,17 @@ function gameTime() {
     for (var i = 0; i < questions.length; i++) {
         var optionSelect = $("#q" + i + 'input:radio:checked').val();
         if (questions[i].answer === optionSelect) {
-         correctAnswer++;   
+            correctAnswer++;
+            console.log(correctAnswer);
         } else if (questions[i].answer !== optionSelect) {
             incorrectAnswer++;
+            console.log(incorrectAnswer);
         }
 
 
     }
-    
+
 }
-
-
-// the time that should start once the start button is clicked
 
 function populateForm() {
     for (var i = 0; i < questions.length; i++) {
@@ -59,15 +58,71 @@ function populateForm() {
             $("#q" + i).append(
                 '<input type="radio" name=' + i +
                 ' value=' + questions[i].options[j] + '>' +
-                questions[i].options[j]);
+                questions[i].options[j]
+            );
         }
     }
 }
 
+var countDownTimer = {
+    time: 120,
+    reset: function () {
+        countDownTimer.time = 120;
+    },
+    start: function () {
+        setInterval(countDownTimer.count, 1000);
+        countDownTimer.count();
+    },
+    stop: function () {
+        clearInterval(countDownTimer);
+        //DO stopping stuff 
+
+    },
+    count: function () {
+        if (countDownTimer.time > 0) {
+            countDownTimer.time--;
+            console.log(countDownTimer.time);
+            $('#time').html(countDownTimer.time);
+        } else {
+            countDownTimer.stop();
+        }
+
+    },
+    timerConverter: function (t) {
+        var minutes = Math.floor(t / 60);
+        var seconds = t - (minutes * 60);
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        if (minutes === 0) {
+            minutes = "00";
+        } else if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        return minutes + ":" + seconds;
+    }
+}
+
+function showTimer() {
+    countDownTimer.start();
+}
+
+// function displayResult() {
+//     $("#question-form").empty();
+//     $("#question-form").append("<h2><p>" + correctAnswer + " correct</p></h2>");
+//     $("#question").append("<h2><p>" + incorrectAnswer + " incorrect</p></h2>");
+//     countdownTimer.stop();
+//     $('#countDown').empty();
+// }
 
 $(document).ready(function () {
-    $("#display-timer").html("00:00");
-    $("#start").click(timer);
-    var timer = setTimeout(gameTime, 12000);
+    $("#question").hide();
+    $("#result").hide();
+    $("#start").on("click", function () {
+        document.getElementById("theme").play();
+        $("#question").show();
+        $("#start").hide();
+        showTimer();
+    })
     populateForm();
 });
