@@ -32,37 +32,7 @@ var questions = [{
         answer: "James and Lilly Potter"
     }
 ];
-
-function gameTime() {
-
-    for (var i = 0; i < questions.length; i++) {
-        var optionSelect = $("#q" + i + 'input:radio:checked').val();
-        if (questions[i].answer === optionSelect) {
-            correctAnswer++;
-            console.log(correctAnswer);
-        } else if (questions[i].answer !== optionSelect) {
-            incorrectAnswer++;
-            console.log(incorrectAnswer);
-        }
-    }
-}
-
-function populateForm() {
-    for (var i = 0; i < questions.length; i++) {
-        $("#question-form").append("<div id=" + "q" + i + "></div>");
-        $("#q" + i).append("<div><p>" + questions[i].question + "</p></div>");
-        for (var j = 0; j < questions[i].options.length; j++) {
-            $("#q" + i).append(
-                '<input type="radio" name=' + i +
-                ' value=' + questions[i].options[j] + '>' +
-                questions[i].options[j] + "<br/>"
-            );
-        }
-        
-    }
-    $("#question").append("<button id='send' class='btn btn-lg'>Submit</button>");
-}
-
+// Code for time remaining
 var countDownTimer = {
     time: 10,
     reset: function () {
@@ -75,7 +45,7 @@ var countDownTimer = {
     stop: function () {
         clearInterval(countDownTimer);
         //DO stopping stuff 
-               gameTime();
+        gameTime();
 
     },
     count: function () {
@@ -102,19 +72,45 @@ var countDownTimer = {
         return minutes + ":" + seconds;
     }
 }
-
+// function to start the game
 function showTimer() {
     countDownTimer.start();
+}
+// function to check if the selected answer is correct
+function gameTime() {
+    for (var i = 0; i < questions.length; i++) {
+        var optionSelect = $("#q" + i + 'input:radio:checked').val();
+        if (questions[i].answer === optionSelect) {
+            correctAnswer++;
+            console.log(correctAnswer);
+        } else if (questions[i].answer !== optionSelect) {
+            incorrectAnswer++;
+            console.log(incorrectAnswer);
+        }
+    }
+}
+// function to populate the form with the questions and options
+function populateForm() {
+    for (var i = 0; i < questions.length; i++) {
+        $("#question-form").append("<div id=" + "q" + i + "></div>");
+        $("#q" + i).append("<div><p>" + questions[i].question + "</p></div>");
+        for (var j = 0; j < questions[i].options.length; j++) {
+            $("#q" + i).append(
+                '<input type="radio" name=' + i +
+                ' value=' + questions[i].options[j] + '>' +
+                questions[i].options[j] + "<br/>"
+            );
+        }
+
+    }
+    $("#question").append("<button id='send' class='btn btn-lg'>Submit</button>");
 }
 
 
 
-$(document).ready(function () {
 
-   function blink(){
-       $(".blinker").fadeOut(600);
-       $(".blinker").fadeIn(600);
-   }
+
+$(document).ready(function () {
     $("#question").slideUp();
     $("#result").hide();
     $("#start").on("click", function () {
@@ -126,10 +122,8 @@ $(document).ready(function () {
     // Start of the game
 
     populateForm();
-     $("#send").on("click", function () {
+    $("#send").on("click", function () {
         console.log("ssspeeppe");
         gameTime();
     })
 });
-
-   
