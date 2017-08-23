@@ -44,30 +44,29 @@ function gameTime() {
             incorrectAnswer++;
             console.log(incorrectAnswer);
         }
-
-
     }
-
 }
 
 function populateForm() {
     for (var i = 0; i < questions.length; i++) {
         $("#question-form").append("<div id=" + "q" + i + "></div>");
-        $("#q" + i).append("<p>" + questions[i].question + "</p>");
+        $("#q" + i).append("<div><p>" + questions[i].question + "</p></div>");
         for (var j = 0; j < questions[i].options.length; j++) {
             $("#q" + i).append(
                 '<input type="radio" name=' + i +
                 ' value=' + questions[i].options[j] + '>' +
-                questions[i].options[j]
+                questions[i].options[j] + "<br/>"
             );
         }
+        
     }
+    $("#question").append("<button id='send' class='btn btn-lg'>Submit</button>");
 }
 
 var countDownTimer = {
-    time: 120,
+    time: 10,
     reset: function () {
-        countDownTimer.time = 120;
+        countDownTimer.time = 10;
     },
     start: function () {
         setInterval(countDownTimer.count, 1000);
@@ -76,6 +75,7 @@ var countDownTimer = {
     stop: function () {
         clearInterval(countDownTimer);
         //DO stopping stuff 
+               gameTime();
 
     },
     count: function () {
@@ -107,22 +107,29 @@ function showTimer() {
     countDownTimer.start();
 }
 
-// function displayResult() {
-//     $("#question-form").empty();
-//     $("#question-form").append("<h2><p>" + correctAnswer + " correct</p></h2>");
-//     $("#question").append("<h2><p>" + incorrectAnswer + " incorrect</p></h2>");
-//     countdownTimer.stop();
-//     $('#countDown').empty();
-// }
+
 
 $(document).ready(function () {
-    $("#question").hide();
+
+   function blink(){
+       $(".blinker").fadeOut(600);
+       $(".blinker").fadeIn(600);
+   }
+    $("#question").slideUp();
     $("#result").hide();
     $("#start").on("click", function () {
         document.getElementById("theme").play();
-        $("#question").show();
+        $("#question").slideDown();
         $("#start").hide();
         showTimer();
     })
+    // Start of the game
+
     populateForm();
+     $("#send").on("click", function () {
+        console.log("ssspeeppe");
+        gameTime();
+    })
 });
+
+   

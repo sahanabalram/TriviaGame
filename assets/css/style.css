@@ -1,17 +1,50 @@
 body {
-    background-image:url("../images/background.jpg");
-    color: white;
-}
-
-#game-start, #question-form,#result {
-    width: 50%;
-    height: 50%;
-    background-color: blue;
-    box-shadow: 0px 0px 10px;
-    border: 2px solid black;
+    background-image: url("../images/school.png");
+    /* background-repeat: no-repeat; */
+    color: black;
     text-align: center;
 }
 
-div.container-fluid {
+.jumbotron {
     margin: 0 auto;
+    margin-top: 10%;
+    background-color: tan;
+    box-shadow: 0px 0px 10px;
+    border: 2px solid black;
+}
+
+.jumbotron h1 {
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Indie Flower', cursive;
+
+}
+
+.jumbotron p {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+}
+
+#question {
+    border: 2px solid black;
+    border-radius: 25%;
+}
+
+#question-form {
+    font-size: 16px;
+    font-weight: italic;
+}
+
+#count-down {
+    text-align: center;
+    margin-top: 25px;
+    text-decoration: underline;
+}
+
+#send,
+#start {
+    margin-top: 5%;
+    padding: 10px;
+    background-color: teal;
 }
