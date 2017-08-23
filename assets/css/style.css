@@ -2,3 +2,16 @@ body {
     background-image:url("../images/background.jpg");
     color: white;
 }
+
+#game-start, #question-form,#result {
+    width: 50%;
+    height: 50%;
+    background-color: blue;
+    box-shadow: 0px 0px 10px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+div.container-fluid {
+    margin: 0 auto;
+}
