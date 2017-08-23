@@ -1,8 +1,9 @@
 // declare variables that is needed for the game.
-var userGuess;
-var correctAnswer;
-var incorrectAnswer;
-var unAnswered;
+var userGuess = 0;
+var correctAnswer = 0;
+var incorrectAnswer = 0;
+var unAnswered = 0;
+var timeRemaining;
 
 // questions for the trivia game declared as an array and then questions are declared as an object.
 var questions = [{
@@ -34,24 +35,39 @@ var questions = [{
 
 function gameTime() {
 
+    for (var i = 0; i < questions.length; i++) {
+        var optionSelect = $("#q" + i + 'input:radio:checked').val();
+        if (questions[i].answer === optionSelect) {
+         correctAnswer++;   
+        } else if (questions[i].answer !== optionSelect) {
+            incorrectAnswer++;
+        }
+
+
+    }
+    
 }
+
+
 // the time that should start once the start button is clicked
 
 function populateForm() {
     for (var i = 0; i < questions.length; i++) {
         $("#question-form").append("<div id=" + "q" + i + "></div>");
         $("#q" + i).append("<p>" + questions[i].question + "</p>");
-        for(var j = 0; j < questions[i].options.length; j++) {
+        for (var j = 0; j < questions[i].options.length; j++) {
             $("#q" + i).append(
                 '<input type="radio" name=' + i +
-                        ' value=' + questions[i].options[j] + '>' +
-                        questions[i].options[j] + '<br>');
+                ' value=' + questions[i].options[j] + '>' +
+                questions[i].options[j]);
         }
     }
 }
+
+
 $(document).ready(function () {
     $("#display-timer").html("00:00");
-     $("#start").click(timer);
-    var timer = setTimeout(gameTime, 120000);
+    $("#start").click(timer);
+    var timer = setTimeout(gameTime, 12000);
     populateForm();
 });
