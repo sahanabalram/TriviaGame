@@ -83,6 +83,7 @@ function gameTime() {
     $("#unAnswered").html(unAnswered);
     $("#correct-answer").html(correctAnswer);
     $("#incorrect-answer").html(inCorrectAnswer);
+    $("#magic").hide();
     $("#question").hide();
     $("#result").show();
 }
@@ -104,7 +105,6 @@ function populateForm() {
 }
 
 $(document).ready(function () {
-    $(".blinker").addClass("animated shake");
     $("#question").slideUp();
     $("#result").hide();
     $("#start").on("click", function () {
@@ -115,7 +115,6 @@ $(document).ready(function () {
     });
     populateForm();
     $("#send").on("click", function () {
-        console.log("ssspeeppe");
         gameTime();
     });
 });
