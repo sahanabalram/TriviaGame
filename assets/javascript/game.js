@@ -78,6 +78,8 @@ function gameTime() {
             console.log("Should never come here..");
         }
     }
+    document.getElementById("theme").pause();
+    document.getElementById("end").play();
     $("#unAnswered").html(unAnswered);
     $("#correct-answer").html(correctAnswer);
     $("#incorrect-answer").html(inCorrectAnswer);
