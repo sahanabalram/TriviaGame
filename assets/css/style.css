@@ -18,11 +18,17 @@ body {
     font-weight: bold;
     font-family: 'Indie Flower', cursive;
 }
-
+   
+h1.blinker.animated.shake {
+    transition: 9s;
+}
+h1.blinker.animated.shake:hover{
+    transform:rotateX(360deg);
+} 
 .jumbotron p {
     font-size: 24px;
     font-weight: bold;
-    font-family: 'Dancing Script', cursive;
+    padding-top: 2%;
 }
 
 #question {
@@ -60,6 +66,10 @@ input[type="radio"] {
     cursor: pointer;
 }
 
+input[type="radio"]:hover, input[type="radio"]:checked {
+  background: #363945;
+  box-shadow: inset 0 0 0 .6em white, 0 0 0 .3em;
+} 
 input[type="radio"]:checked {
     background: #56be8e;
     box-shadow: inset 0 0 0 .4em white, 0 0 0 .3em #56be8e;
@@ -69,6 +79,3 @@ input[type="radio"]:focus {
     outline: 0;
 }
 
-i.fa.fa-magic.fa-3x.fa-spin {
-    padding: 30px;
-}
