@@ -67,14 +67,14 @@ function gameTime() {
         var optionSelect = $('input[name=q' + i + ']:checked', '#question-form').val()
         console.log(questions[i].answer, optionSelect);
         if (!(optionSelect != undefined)) {
-            unAnswered++;           
+            unAnswered++;
         } else if (questions[i].answer === optionSelect) {
-            correctAnswer++;            
+            correctAnswer++;
             console.log(correctAnswer);
         } else if (questions[i].answer !== optionSelect) {
-            inCorrectAnswer++;           
+            inCorrectAnswer++;
             console.log(inCorrectAnswer);
-        } else {        
+        } else {
             console.log("Should never come here..");
         }
     }
@@ -102,6 +102,7 @@ function populateForm() {
 }
 
 $(document).ready(function () {
+    $(".blinker").addClass("animated shake");
     $("#question").slideUp();
     $("#result").hide();
     $("#start").on("click", function () {
