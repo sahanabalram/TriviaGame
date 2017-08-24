@@ -17,7 +17,6 @@ body {
     font-size: 36px;
     font-weight: bold;
     font-family: 'Indie Flower', cursive;
-
 }
 
 .jumbotron p {
@@ -47,4 +46,25 @@ body {
     margin-top: 5%;
     padding: 10px;
     background-color: teal;
+}
+
+input[type="radio"] {
+    margin: 0 15px;
+    width: 16px;
+    height: 16px;
+    background: #eeeeee;
+    box-shadow: inset 0 0 0 .4em white, 0 0 0 .3em;
+    color: #363945;
+    border-radius: 50%;
+    transition: .2s;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked {
+    background: #56be8e;
+    box-shadow: inset 0 0 0 .4em white, 0 0 0 .3em #56be8e;
+}
+
+input[type="radio"]:focus {
+    outline: 0;
 }
