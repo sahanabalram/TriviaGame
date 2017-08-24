@@ -1,7 +1,7 @@
 // declare variables that is needed for the game.
 var userGuess = 0;
 var correctAnswer = 0;
-var incorrectAnswer = 0;
+var inCorrectAnswer = 0;
 var unAnswered = 0;
 var timeRemaining;
 
@@ -33,17 +33,18 @@ var questions = [{
     }
 ];
 // Code for time remaining
+var gameTimer;
+
 var countDownTimer = {
     time: 10,
     reset: function () {
         countDownTimer.time = 10;
     },
     start: function () {
-        setInterval(countDownTimer.count, 1000);
+        gameTimer = setInterval(countDownTimer.count, 1000);
         countDownTimer.count();
     },
     stop: function () {
-        clearInterval(countDownTimer);
         //DO stopping stuff 
         gameTime();
 
@@ -51,14 +52,15 @@ var countDownTimer = {
     count: function () {
         if (countDownTimer.time > 0) {
             countDownTimer.time--;
-            console.log(countDownTimer.time);
+            //console.log(countDownTimer.time);
             $('#time').html(countDownTimer.time);
         } else {
+            console.log("stopping...");
             countDownTimer.stop();
         }
 
-    },
-    timerConverter: function (t) {
+    }
+    /* timerConverter: function (t) {
         var minutes = Math.floor(t / 60);
         var seconds = t - (minutes * 60);
         if (seconds < 10) {
@@ -70,25 +72,37 @@ var countDownTimer = {
             minutes = "0" + minutes;
         }
         return minutes + ":" + seconds;
-    }
+    } */
 }
-// function to start the game
-function showTimer() {
-    countDownTimer.start();
-}
+
 // function to check if the selected answer is correct
 function gameTime() {
+    clearInterval(gameTimer);
     for (var i = 0; i < questions.length; i++) {
-        var optionSelect = $("#q" + i + 'input:radio:checked').val();
-        if (questions[i].answer === optionSelect) {
-            correctAnswer++;
+        //var optionSelect = $("#q" + i + 'input:radio:checked').val();
+        var optionSelect = $('input[name=q' + i + ']:checked', '#question-form').val()
+        console.log(optionSelect);
+        if (!(optionSelect != undefined)) {
+            unAnswered++;           
+        } else if (questions[i].answer === optionSelect) {
+            correctAnswer++;            
             console.log(correctAnswer);
         } else if (questions[i].answer !== optionSelect) {
-            incorrectAnswer++;
-            console.log(incorrectAnswer);
+            inCorrectAnswer++;           
+            console.log(inCorrectAnswer);
+        } else {
+            // unAnswered++;
+            console.log("Should never come here..");
         }
     }
+    $("#unAnswered").html(unAnswered);
+    $("#correct-answer").html(correctAnswer);
+    $("#incorrect-answer").html(inCorrectAnswer);
+    $("#question").hide();
+    $("#result").show();
 }
+
+
 // function to populate the form with the questions and options
 function populateForm() {
     for (var i = 0; i < questions.length; i++) {
@@ -96,7 +110,7 @@ function populateForm() {
         $("#q" + i).append("<div><p>" + questions[i].question + "</p></div>");
         for (var j = 0; j < questions[i].options.length; j++) {
             $("#q" + i).append(
-                '<input type="radio" name=' + i +
+                '<input type="radio" name=q' + i +
                 ' value=' + questions[i].options[j] + '>' +
                 questions[i].options[j] + "<br/>"
             );
@@ -106,10 +120,6 @@ function populateForm() {
     $("#question").append("<button id='send' class='btn btn-lg'>Submit</button>");
 }
 
-
-
-
-
 $(document).ready(function () {
     $("#question").slideUp();
     $("#result").hide();
@@ -117,9 +127,8 @@ $(document).ready(function () {
         document.getElementById("theme").play();
         $("#question").slideDown();
         $("#start").hide();
-        showTimer();
+        countDownTimer.start();
     })
-    // Start of the game
 
     populateForm();
     $("#send").on("click", function () {
