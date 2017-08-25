@@ -8,7 +8,7 @@ body {
 .jumbotron {
     margin: 0 auto;
     margin-top: 10%;
-    background-image:url("../images/school.png");
+    background-image: url("../images/school.png");
     box-shadow: 0px 0px 10px;
     border: 2px solid black;
 }
@@ -19,13 +19,19 @@ body {
     font-family: 'Indie Flower', cursive;
     margin: 40px;
 }
-   
+
+#game-start {
+    background-image: url("../images/school.png");
+}
+
 h1.blinker.animated.shake {
     transition: 9s;
 }
-h1.blinker.animated.shake:hover{
-    transform:rotateX(360deg);
-} 
+
+h1.blinker.animated.shake:hover {
+    transform: rotateX(360deg);
+}
+
 .jumbotron p {
     font-size: 24px;
     font-weight: bold;
@@ -33,8 +39,8 @@ h1.blinker.animated.shake:hover{
 }
 
 #question {
-    border: 2px solid black;
-    border-radius: 25%;
+    /* border: 2px solid black;
+    border-radius: 25%; */
     margin-top: 30px;
 }
 
@@ -71,10 +77,12 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-input[type="radio"]:hover, input[type="radio"]:checked {
-  background: #363945;
-  box-shadow: inset 0 0 0 .6em white, 0 0 0 .3em;
-} 
+input[type="radio"]:hover,
+input[type="radio"]:checked {
+    background: #363945;
+    box-shadow: inset 0 0 0 .6em white, 0 0 0 .3em;
+}
+
 input[type="radio"]:checked {
     background: #56be8e;
     box-shadow: inset 0 0 0 .4em white, 0 0 0 .3em #56be8e;
@@ -83,4 +91,3 @@ input[type="radio"]:checked {
 input[type="radio"]:focus {
     outline: 0;
 }
-
